@@ -1,6 +1,28 @@
-<AML>
+﻿<AML>
  <Item type="Item Action" id="9323B1F42BA64465891F13B8CC073C87" action="add">
-  <related_id keyed_name="Add Item to New ECR" type="Action">D222DD0B7D3F4B84B0B1B798B83DC4B1</related_id>
+  <classification>/*</classification>
+  <related_id keyed_name="CMActions_AddToECR" type="Action">
+   <Item type="Action" id="D222DD0B7D3F4B84B0B1B798B83DC4B1" action="add">
+    <body></body>
+    <classification>/*</classification>
+    <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+    <label xml:lang="en">Add Item(s) To New ECR</label>
+    <location>client</location>
+    <method keyed_name="CMActions_GetSelectedItems" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>CMActions_GetSelectedItems</name>
+     </Item>
+    </method>
+    <name>CMActions_AddToECR</name>
+    <on_complete keyed_name="CMActions_SetECR" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>CMActions_SetECR</name>
+     </Item>
+    </on_complete>
+    <target>none</target>
+    <type>item</type>
+   </Item>
+  </related_id>
   <sort_order>2</sort_order>
   <source_id keyed_name="Part" type="ItemType" name="Part">4F1AC04A2B484F3ABA4E20DB63808A88</source_id>
  </Item>

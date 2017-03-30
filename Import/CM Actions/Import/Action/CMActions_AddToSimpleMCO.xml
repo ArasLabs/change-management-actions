@@ -1,0 +1,21 @@
+﻿<AML>
+ <Item type="Action" id="ECF428E26D3443EBBC2B4E1CDCB454E2" action="add">
+  <classification>/*</classification>
+  <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+  <label xml:lang="en">Add Item(s) to New MCO</label>
+  <location>client</location>
+  <method keyed_name="CMActions_GetSelectedItems" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>CMActions_GetSelectedItems</name>
+   </Item>
+  </method>
+  <name>CMActions_AddToSimpleMCO</name>
+  <on_complete keyed_name="CMActions_SetSimpleMCO" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>CMActions_SetSimpleMCO</name>
+   </Item>
+  </on_complete>
+  <target>none</target>
+  <type>item</type>
+ </Item>
+</AML>

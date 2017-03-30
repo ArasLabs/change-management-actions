@@ -1,12 +1,16 @@
 ﻿<AML>
  <Item type="Method" id="55B2666D72B144B78F81814043787D81" action="add">
-  <method_code><![CDATA[// Create a new PR item in the client cache and set its affected_id to the selected item
-var prItem = top.aras.newItem("PR","add");
-top.aras.setItemProperty(prItem,"affected_item",this.node);
-
-// Show the new PR
-top.aras.uiShowItemEx(prItem,"tab view",true);]]></method_code>
+  <classification>/*</classification>
+  <method_code><![CDATA[// CMActions_SetPR
+// Called OnComplete from the CMActions_AddToPR action. Sets the ChangeItem attribute and calls
+//  CMActions_AddChangeItem to add the PR
+if (inArgs && inArgs.results && inArgs.results.getItemByIndex(0) &&
+    inArgs.results.getItemByIndex(0).getAttribute("ChangeItem","").length > 0)
+{
+  inArgs.results.getItemByIndex(0).setAttribute("ChangeItem","PR");
+  top.aras.evalMethod("CMActions_AddChangeItem",inArgs.results.dom.xml);
+}]]></method_code>
   <method_type>JavaScript</method_type>
-  <name>Add Item to New PR</name>
+  <name>CMActions_SetPR</name>
  </Item>
 </AML>

@@ -1,28 +1,28 @@
 ﻿<AML>
- <Item type="Item Action" id="673ECBD6F7B64D1F9093018E75C7BEF5" action="add">
+ <Item type="Item Action" id="3CA53D39C5C644EB99DBF53DDC82C933" action="add">
   <classification>/*</classification>
-  <related_id keyed_name="CMActions_AddToPR" type="Action">
-   <Item type="Action" id="1B395756F9F145ACA9484F25B77CF874" action="add">
+  <related_id keyed_name="CMActions_AddToECN" type="Action">
+   <Item type="Action" id="C1F9B38DA081474E880607D821A33362" action="add">
     <classification>/*</classification>
     <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
-    <label xml:lang="en">Add Item To New PR</label>
+    <label xml:lang="en">Add Item(s) to New ECN</label>
     <location>client</location>
     <method keyed_name="CMActions_GetSelectedItems" type="Method">
      <Item type="Method" action="get" select="id">
       <name>CMActions_GetSelectedItems</name>
      </Item>
     </method>
-    <name>CMActions_AddToPR</name>
-    <on_complete keyed_name="CMActions_SetPR" type="Method">
+    <name>CMActions_AddToECN</name>
+    <on_complete keyed_name="CMActions_SetECN" type="Method">
      <Item type="Method" action="get" select="id">
-      <name>CMActions_SetPR</name>
+      <name>CMActions_SetECN</name>
      </Item>
     </on_complete>
     <target>none</target>
     <type>item</type>
    </Item>
   </related_id>
-  <sort_order>1</sort_order>
-  <source_id keyed_name="Part" type="ItemType" name="Part">4F1AC04A2B484F3ABA4E20DB63808A88</source_id>
+  <sort_order>3</sort_order>
+  <source_id keyed_name="Document" type="ItemType" name="Document">B88C14B99EF449828C5D926E39EE8B89</source_id>
  </Item>
 </AML>

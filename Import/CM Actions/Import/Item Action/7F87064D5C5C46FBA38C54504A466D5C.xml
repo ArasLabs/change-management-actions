@@ -1,28 +1,28 @@
 ﻿<AML>
- <Item type="Item Action" id="673ECBD6F7B64D1F9093018E75C7BEF5" action="add">
+ <Item type="Item Action" id="7F87064D5C5C46FBA38C54504A466D5C" action="add">
   <classification>/*</classification>
-  <related_id keyed_name="CMActions_AddToPR" type="Action">
-   <Item type="Action" id="1B395756F9F145ACA9484F25B77CF874" action="add">
+  <related_id keyed_name="CMActions_AddToSimpleMCO" type="Action">
+   <Item type="Action" id="ECF428E26D3443EBBC2B4E1CDCB454E2" action="add">
     <classification>/*</classification>
     <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
-    <label xml:lang="en">Add Item To New PR</label>
+    <label xml:lang="en">Add Item(s) to New MCO</label>
     <location>client</location>
     <method keyed_name="CMActions_GetSelectedItems" type="Method">
      <Item type="Method" action="get" select="id">
       <name>CMActions_GetSelectedItems</name>
      </Item>
     </method>
-    <name>CMActions_AddToPR</name>
-    <on_complete keyed_name="CMActions_SetPR" type="Method">
+    <name>CMActions_AddToSimpleMCO</name>
+    <on_complete keyed_name="CMActions_SetSimpleMCO" type="Method">
      <Item type="Method" action="get" select="id">
-      <name>CMActions_SetPR</name>
+      <name>CMActions_SetSimpleMCO</name>
      </Item>
     </on_complete>
     <target>none</target>
     <type>item</type>
    </Item>
   </related_id>
-  <sort_order>1</sort_order>
+  <sort_order>5</sort_order>
   <source_id keyed_name="Part" type="ItemType" name="Part">4F1AC04A2B484F3ABA4E20DB63808A88</source_id>
  </Item>
 </AML>

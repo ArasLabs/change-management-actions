@@ -1,0 +1,16 @@
+﻿<AML>
+ <Item type="Method" id="565444B4138744B787226DF472B4C44A" action="add">
+  <classification>/*</classification>
+  <method_code><![CDATA[// CMActions_SimpleMCO
+// Called OnComplete from the CMActions_AddToSimpleMCO action. Sets the ChangeItem attribute and calls
+//  CMActions_AddChangeItem to add the MCO
+if (inArgs && inArgs.results && inArgs.results.getItemByIndex(0) &&
+    inArgs.results.getItemByIndex(0).getAttribute("ChangeItem","").length > 0)
+{
+  inArgs.results.getItemByIndex(0).setAttribute("ChangeItem","Simple MCO");
+  top.aras.evalMethod("CMActions_AddChangeItem",inArgs.results.dom.xml);
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>CMActions_SetSimpleMCO</name>
+ </Item>
+</AML>

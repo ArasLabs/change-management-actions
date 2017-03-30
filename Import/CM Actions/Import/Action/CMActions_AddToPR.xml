@@ -1,14 +1,20 @@
-<AML>
+﻿<AML>
  <Item type="Action" id="1B395756F9F145ACA9484F25B77CF874" action="add">
+  <classification>/*</classification>
   <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
   <label xml:lang="en">Add Item To New PR</label>
   <location>client</location>
-  <method keyed_name="Add Item to New PR" type="Method">
+  <method keyed_name="CMActions_GetSelectedItems" type="Method">
    <Item type="Method" action="get" select="id">
-    <name>Add Item to New PR</name>
+    <name>CMActions_GetSelectedItems</name>
    </Item>
   </method>
-  <name>Add Item to New PR</name>
+  <name>CMActions_AddToPR</name>
+  <on_complete keyed_name="CMActions_SetPR" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>CMActions_SetPR</name>
+   </Item>
+  </on_complete>
   <target>none</target>
   <type>item</type>
  </Item>

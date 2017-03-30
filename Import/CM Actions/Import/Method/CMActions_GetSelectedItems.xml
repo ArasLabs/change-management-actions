@@ -1,0 +1,86 @@
+﻿<AML>
+ <Item type="Method" id="BC74EDD7DFB7417BB537B9CF1C37D300" action="add">
+  <classification>/*</classification>
+  <method_code><![CDATA[// CMActions_GetSelectedItems
+// Gets all the selected items, whether from a relationship grid, main grid or form and builds a
+//  collection for use in creating the change item
+
+var thisType = this.getType();
+var grid;
+var idArray;
+
+// Check whether the method is being called from a relationship grid, the main grid or on an
+//  individual item and build an array of item ids
+if ((thisType=="Part BOM" || thisType=="Part Document") && document && 
+     document.frames["relationships"] && document.frames["relationships"].document.frames[0] && 
+     document.frames["relationships"].document.frames[0].document.grid)
+{
+  for (var i=0; i<document.frames["relationships"].document.frames.length; i++)
+  {
+    grid = document.frames["relationships"].document.frames[i].document.grid;
+    if (grid && grid.getSelectedItemIds(",") && grid.getSelectedItemIds(",").length > 0)
+    {
+      idArray = grid.getSelectedItemIds(",").split(",");
+    }
+  }
+}
+else if (top.main && top.main.work && top.main.work.gridApplet)
+{
+  grid = top.main.work.gridApplet;
+  idArray = grid.getSelectedItemIds(",").split(",");
+}
+else
+{
+  idArray = new Array(); 
+  for (var j=0; j<this.getItemCount(); j++)
+  {
+    idArray.push(this.getItemByIndex(j).getID());
+  }
+}
+
+// If this is the last item in the array then build an item collection to return
+if (this.getID() == idArray[idArray.length - 1])
+{
+  // Add a dummy item to start the result collection (removed later)
+  var resultItem = this.newItem("DeleteMe","DeleteMe"); 
+  for (var k=0; k<idArray.length; k++)
+  {
+    var ccItem;
+    
+    // When starting from a relationship, get the parent item from the cache and then retrieve the related item
+    if (thisType == "Part BOM" || thisType == "Part Document")
+    {
+      var parentId = this.getProperty("source_id","");
+      var parentItem = top.aras.getFromCache(parentId);
+      if (parentItem)
+      {
+        ccItem = parentItem.selectSingleNode("Relationships/Item[@id='"+idArray[k]+"']");
+        if (ccItem) { ccItem = top.aras.getRelatedItem(ccItem); }
+      }
+    }
+    else
+    {
+      ccItem = top.aras.getFromCache(idArray[k]);
+    }
+    
+    // Add the item to the collection to be returned
+    if (ccItem)
+    {
+     var tempItem = this.newItem("","");
+     tempItem.loadAML(ccItem.xml);
+     resultItem.appendItem(tempItem);
+    }
+  }
+  if (resultItem.getItemCount() < 2) { return; }
+
+  // Remove the dummy item
+  resultItem.removeItem(resultItem.getItemByIndex(0));
+
+  // Set the ChangeItem attribute for debugging purposes and return the results
+  resultItem.getItemByIndex(0).setAttribute("ChangeItem","Pending");
+  return resultItem;
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>CMActions_GetSelectedItems</name>
+ </Item>
+</AML>

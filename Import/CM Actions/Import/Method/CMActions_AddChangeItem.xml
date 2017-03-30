@@ -1,0 +1,84 @@
+﻿<AML>
+ <Item type="Method" id="03DBA4095E9A4E57A69471F44C287EC9" action="add">
+  <classification>/*</classification>
+  <method_code><![CDATA[// CMActions_AddChangeItem
+// Adds a change item (PR, ECR, ECN, ECO or MCO) client-side and attaches the specified items
+//  as affected.  The incoming dom should be an item or item collection to attach to the new change
+//  item. The change item type should be specified as an attribute on the first item.
+
+// Load the incoming dom into a new item
+var thisItem = this.newItem("","");
+thisItem.loadAML(this.dom.xml);
+
+// Get the desired change item from the ChangeItem attribute
+var changeType = thisItem.getItemByIndex(0).getAttribute("ChangeItem","");
+
+if (changeType == "PR")
+{
+ // PRs may have only one affected item, so return an error if more than one is passed
+ if (thisItem.getItemCount() > 1) {top.aras.AlertError("Only one item may be added to a PR. Please select a single row."); return; }
+
+ // Do a client-side add of the PR. The new PR will not be in the database until the user saves it
+ var prItem = top.aras.newItem("PR","add");
+ 
+ // Set the affected_item property
+ top.aras.setItemProperty(prItem,"affected_item",this.getItemByIndex(0).node);
+
+ // Show the new PR
+ top.aras.uiShowItemEx(prItem,"tab view",true);
+}
+else if (changeType == "ECR" || changeType == "ECN" || changeType == "Simple ECO")
+{
+  // Do a client-side add of the change item. The new item will not be in the database until the user saves it
+  var changeItem = top.aras.newItem(changeType,"add");
+  
+  // Create a new Affected Item relationship for each passed item
+  var typeID = top.aras.getItemFromServerByName("RelationshipType",changeType+" Affected Item","id").node.getAttribute('id');
+  for (var i=0; i<thisItem.getItemCount(); i++)
+  {
+    var kn = thisItem.getItemByIndex(i).getProperty("keyed_name","");
+    var state = thisItem.getItemByIndex(i).getProperty("state","");
+
+    // Set the default Affected Item action based on the state of the item
+    var action = ("Released" == state) ? "Change" : "Add";
+    var prop = ("Released" == state) ? "affected_id" : "new_item_id";
+    var affItemRel = top.aras.newRelationship(typeID,changeItem);
+    var affItem = changeItem.ownerDocument.createElement("Item");
+    affItem.setAttribute("type","Affected Item");
+    affItem.setAttribute("action","add");
+    top.aras.setItemProperty(affItem,"action",action);
+    top.aras.setItemProperty(affItem,prop,"");
+    affItem.selectSingleNode(prop).setAttribute("keyed_name",kn);
+    var ccItem = affItem.ownerDocument.createElement("Item");
+    ccItem.setAttribute("type","Change Controlled Item");
+    ccItem.setAttribute("action","skip");
+    ccItem.setAttribute("typeId",thisItem.getItemByIndex(i).getAttribute("typeId",""));
+    ccItem.setAttribute("id",thisItem.getItemByIndex(i).getID());
+    ccItem.setAttribute("keyed_name",kn);
+    top.aras.setItemProperty(affItemRel,"related_id",affItem);
+    top.aras.setItemProperty(affItem,prop,ccItem);
+  }
+  
+  // Show the new change item
+  top.aras.uiShowItemEx(changeItem,"tab view",true);
+}
+else if (changeType == "Simple MCO")
+{
+  // Do a client-side add of the MCO. The new item will not be in the database until the user saves it
+  var mcoItem = top.aras.newItem("Simple MCO","add");
+  
+  // Create a new Simple MCO Part relationship for each passed item
+  var mcoPartRelId = top.aras.getItemFromServerByName("RelationshipType","Simple MCO Part","id").node.getAttribute('id');
+  for (var j=0; j<thisItem.getItemCount(); j++)
+  {
+    var mcoPartRel = top.aras.newRelationship(mcoPartRelId,mcoItem);
+    top.aras.setItemProperty(mcoPartRel,"related_id",thisItem.getItemByIndex(j).node);
+  }
+  
+  // Show the new MCO
+  top.aras.uiShowItemEx(mcoItem,"tab view",true);  
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>CMActions_AddChangeItem</name>
+ </Item>
+</AML>
