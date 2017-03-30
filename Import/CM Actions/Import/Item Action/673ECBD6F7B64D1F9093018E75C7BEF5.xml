@@ -1,6 +1,6 @@
 <AML>
  <Item type="Item Action" id="673ECBD6F7B64D1F9093018E75C7BEF5" action="add">
-  <related_id keyed_name="Add to New PR" type="Action">1B395756F9F145ACA9484F25B77CF874</related_id>
+  <related_id keyed_name="Add Item to New PR" type="Action">1B395756F9F145ACA9484F25B77CF874</related_id>
   <sort_order>1</sort_order>
   <source_id keyed_name="Part" type="ItemType" name="Part">4F1AC04A2B484F3ABA4E20DB63808A88</source_id>
  </Item>

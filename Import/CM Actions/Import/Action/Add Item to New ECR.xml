@@ -1,14 +1,14 @@
-﻿<AML>
+<AML>
  <Item type="Action" id="D222DD0B7D3F4B84B0B1B798B83DC4B1" action="add">
   <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
-  <label xml:lang="en">Add To New ECR</label>
+  <label xml:lang="en">Add Item To New ECR</label>
   <location>client</location>
   <method keyed_name="Add Item to New ECR" type="Method">
    <Item type="Method" action="get" select="id">
     <name>Add Item to New ECR</name>
    </Item>
   </method>
-  <name>Add to New ECR</name>
+  <name>Add Item to New ECR</name>
   <target>none</target>
   <type>item</type>
  </Item>
