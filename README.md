@@ -8,12 +8,14 @@ This project and the following release notes have been migrated from the old Ara
 
 Release | Notes
 --------|--------
+[v1.1](https://github.com/ArasLabs/change-management-actions/releases/tag/v1.1) | Fix for import errors
 [v1](https://github.com/ArasLabs/change-management-actions/releases/tag/v1) | Initial Release
 
 #### Supported Aras Versions
 
 Project | Aras
 --------|------
+[v1.1](https://github.com/ArasLabs/change-management-actions/releases/tag/v1.1) | 9.0.1
 [v1](https://github.com/ArasLabs/change-management-actions/releases/tag/v1) | 9.0.1
 
 ## Installation

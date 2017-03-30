@@ -1,19 +1,6 @@
-﻿<AML>
+<AML>
  <Item type="Item Action" id="35545DF7FC2E4D25B0B8910AF603BEAA" action="add">
-  <related_id keyed_name="Convert to ECN" type="Action">
-   <Item type="Action" id="28ABBF1B423A4104B7E1AC8441B2D341" action="add">
-    <item_query>___is_new___</item_query>
-    <location>client</location>
-    <method keyed_name="Convert ECR to ECN" type="Method">
-     <Item type="Method" action="get" select="id">
-      <name>Convert ECR to ECN</name>
-     </Item>
-    </method>
-    <name>Convert to ECN</name>
-    <target>none</target>
-    <type>item</type>
-   </Item>
-  </related_id>
+  <related_id keyed_name="Convert to ECN" type="Action">28ABBF1B423A4104B7E1AC8441B2D341</related_id>
   <sort_order>128</sort_order>
   <source_id keyed_name="ECR" type="ItemType" name="ECR">2D4799413792453DA08C1EDE6AA22A76</source_id>
  </Item>
