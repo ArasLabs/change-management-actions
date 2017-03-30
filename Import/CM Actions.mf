@@ -1,0 +1,5 @@
+<imports>
+  <package name="CM Actions" path="CM Actions\Import">
+    <dependson name="com.aras.innovator.solution.PLM" />
+  </package>
+</imports>

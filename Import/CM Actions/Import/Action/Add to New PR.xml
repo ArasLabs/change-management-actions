@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Action" id="1B395756F9F145ACA9484F25B77CF874" action="add">
+  <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+  <label xml:lang="en">Add To New PR</label>
+  <location>client</location>
+  <method keyed_name="Add Item to New PR" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>Add Item to New PR</name>
+   </Item>
+  </method>
+  <name>Add to New PR</name>
+  <target>none</target>
+  <type>item</type>
+ </Item>
+</AML>

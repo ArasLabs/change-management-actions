@@ -1,0 +1,37 @@
+﻿<AML>
+ <Item type="Method" id="B23D4531AFD9417DA22B111ACBEF6439" action="add">
+  <method_code><![CDATA[// Create a new ECR item in the client cache
+var ecrItem = top.aras.newItem("ECR","add");
+
+// Decide on the Affected Item action based on the current item's state
+var state = this.getProperty("state","");
+var action = ("Released" == state) ? "Change" : "Add";
+var prop = ("Released" == state) ? "affected_id" : "new_item_id";
+
+// Add an Affected Item (if present)
+var affItemId = this.getID();
+var affItemName = this.getProperty("keyed_name","");
+var affItemTypeId = this.getAttribute("typeID","");
+if (affItemId !== "") {
+ typeID = top.aras.getItemFromServerByName("RelationshipType","ECR Affected Item","id").node.getAttribute('id');
+ var affItemRel = top.aras.newRelationship(typeID,ecrItem);
+ var affItem = top.aras.newItem("Affected Item","add");
+ top.aras.setItemProperty(affItem,"action",action);
+ top.aras.setItemProperty(affItem,prop,"");
+ affItem.selectSingleNode(prop).setAttribute("keyed_name",affItemName);
+ var ccItem = affItem.ownerDocument.createElement("Item");
+ ccItem.setAttribute("type","Change Controlled Item");
+ ccItem.setAttribute("action","skip");
+ ccItem.setAttribute("typeID",affItemTypeId);
+ ccItem.setAttribute("id",affItemId);
+ ccItem.setAttribute("keyed_name",affItemName);
+ top.aras.setItemProperty(affItemRel,"related_id",affItem);
+ top.aras.setItemProperty(affItem,prop,ccItem);
+}
+
+// Show the new ECR
+top.aras.uiShowItemEx(ecrItem,"tab view",true);]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>Add Item to New ECR</name>
+ </Item>
+</AML>

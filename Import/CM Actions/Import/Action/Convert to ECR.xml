@@ -1,0 +1,14 @@
+﻿<AML>
+ <Item type="Action" id="319B1FFE242046B78466531B88090EA9" action="add">
+  <item_query>___is_new___</item_query>
+  <location>client</location>
+  <method keyed_name="Convert PR to ECR" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>Convert PR to ECR</name>
+   </Item>
+  </method>
+  <name>Convert to ECR</name>
+  <target>none</target>
+  <type>item</type>
+ </Item>
+</AML>

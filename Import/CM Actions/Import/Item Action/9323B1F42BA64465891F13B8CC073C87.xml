@@ -1,0 +1,21 @@
+﻿<AML>
+ <Item type="Item Action" id="9323B1F42BA64465891F13B8CC073C87" action="add">
+  <related_id keyed_name="Add to New ECR" type="Action">
+   <Item type="Action" id="D222DD0B7D3F4B84B0B1B798B83DC4B1" action="add">
+    <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+    <label xml:lang="en">Add To New ECR</label>
+    <location>client</location>
+    <method keyed_name="Add Item to New ECR" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>Add Item to New ECR</name>
+     </Item>
+    </method>
+    <name>Add to New ECR</name>
+    <target>none</target>
+    <type>item</type>
+   </Item>
+  </related_id>
+  <sort_order>2</sort_order>
+  <source_id keyed_name="Part" type="ItemType" name="Part">4F1AC04A2B484F3ABA4E20DB63808A88</source_id>
+ </Item>
+</AML>
