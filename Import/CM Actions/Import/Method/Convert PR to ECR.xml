@@ -1,42 +1,43 @@
 ﻿<AML>
  <Item type="Method" id="BAE45BFB903B4EA2A44725F1C32479A8" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
   <method_code><![CDATA[var inn = this.newInnovator();
-var ecrItem = top.aras.newItem("ECR","add");
+var ecrItem = top.aras.newItem("ECR", "add");
 var prId = this.getID();
 
 // Set the shared properties
-top.aras.setItemProperty(ecrItem,"title",this.getProperty("title",""));
-top.aras.setItemProperty(ecrItem,"priority",this.getProperty("priority",""));
-top.aras.setItemProperty(ecrItem,"basis",this.getProperty("basis",""));
-top.aras.setItemProperty(ecrItem,"requested_by",this.getProperty("reported_by",""));
+top.aras.setItemProperty(ecrItem, "title", this.getProperty("title", ""));
+top.aras.setItemProperty(ecrItem, "priority", this.getProperty("priority", ""));
+top.aras.setItemProperty(ecrItem, "basis", this.getProperty("basis", ""));
+top.aras.setItemProperty(ecrItem, "requested_by", this.getProperty("reported_by", ""));
 
 // Add a relationship back to the PR
-var typeID = top.aras.getItemFromServerByName('RelationshipType','ECR PR','id').node.getAttribute('id');
-var prRel = top.aras.newRelationship(typeID,ecrItem);
-top.aras.setItemProperty(prRel,"related_id",this.node);
+var typeID = top.aras.getItemFromServerByName('RelationshipType', 'ECR PR', 'id').node.getAttribute('id');
+var prRel = top.aras.newRelationship(typeID, ecrItem);
+top.aras.setItemProperty(prRel, "related_id", this.node);
 
 // Add an Affected Item (if present)
-var affItemId = this.getProperty("affected_item","");
-var affItemName = this.getPropertyAttribute("affected_item","keyed_name","");
-var affItemTypeId = inn.getItemById("Change Controlled Item",affItemId).getProperty("itemtype","");
+var affItemId = this.getProperty("affected_item", "");
 if (affItemId !== "") {
- typeID = top.aras.getItemFromServerByName("RelationshipType","ECR Affected Item","id").node.getAttribute('id');
- var affItemRel = top.aras.newRelationship(typeID,ecrItem);
- var affItem = top.aras.newItem("Affected Item","add");
- top.aras.setItemProperty(affItem,"affected_id","");
- affItem.selectSingleNode("affected_id").setAttribute("keyed_name",affItemName);
- var ccItem = affItem.ownerDocument.createElement("Item");
- ccItem.setAttribute("type","Change Controlled Item");
- ccItem.setAttribute("action","skip");
- ccItem.setAttribute("typeID",affItemTypeId);
- ccItem.setAttribute("id",affItemId);
- ccItem.setAttribute("keyed_name",affItemName);
- top.aras.setItemProperty(affItemRel,"related_id",affItem);
- top.aras.setItemProperty(affItem,"affected_id",ccItem);
+    var affItemName = this.getPropertyAttribute("affected_item", "keyed_name", "");
+    var affItemTypeId = inn.getItemById("Change Controlled Item", affItemId).getProperty("itemtype", "");
+    typeID = top.aras.getItemFromServerByName("RelationshipType", "ECR Affected Item", "id").node.getAttribute('id');
+    var affItemRel = top.aras.newRelationship(typeID, ecrItem);
+    var affItem = top.aras.newItem("Affected Item", "add");
+    top.aras.setItemProperty(affItem, "affected_id", affItemId);
+    affItem.selectSingleNode("affected_id").setAttribute("keyed_name", affItemName);
+    var ccItem = affItem.ownerDocument.createElement("Item");
+    ccItem.setAttribute("type", "Change Controlled Item");
+    ccItem.setAttribute("action", "skip");
+    ccItem.setAttribute("typeID", affItemTypeId);
+    ccItem.setAttribute("id", affItemId);
+    ccItem.setAttribute("keyed_name", affItemName);
+    top.aras.setItemProperty(affItemRel, "related_id", affItem);
+    top.aras.setItemProperty(affItem, "affected_id", ccItem);
 }
 
 // Show the new ECR
-top.aras.uiShowItemEx(ecrItem,"tab view",true);]]></method_code>
+top.aras.uiShowItemEx(ecrItem, "tab view");]]></method_code>
   <method_type>JavaScript</method_type>
   <name>Convert PR to ECR</name>
  </Item>

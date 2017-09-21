@@ -7,8 +7,8 @@
     <name>Convert ECR to ECN</name>
    </Item>
   </method>
-  <name>Convert to ECN</name>
   <target>none</target>
   <type>item</type>
+  <name>Convert to ECN</name>
  </Item>
 </AML>

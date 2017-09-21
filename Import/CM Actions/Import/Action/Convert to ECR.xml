@@ -7,8 +7,8 @@
     <name>Convert PR to ECR</name>
    </Item>
   </method>
-  <name>Convert to ECR</name>
   <target>none</target>
   <type>item</type>
+  <name>Convert to ECR</name>
  </Item>
 </AML>

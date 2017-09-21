@@ -1,6 +1,19 @@
-<AML>
+﻿<AML>
  <Item type="Item Action" id="059B5DEE4F78407BB8AEC8FBF3BE2849" action="add">
-  <related_id keyed_name="Convert to ECR" type="Action">319B1FFE242046B78466531B88090EA9</related_id>
+  <related_id keyed_name="Convert to ECR" type="Action">
+   <Item type="Action" id="319B1FFE242046B78466531B88090EA9" action="add">
+    <item_query>___is_new___</item_query>
+    <location>client</location>
+    <method keyed_name="Convert PR to ECR" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>Convert PR to ECR</name>
+     </Item>
+    </method>
+    <target>none</target>
+    <type>item</type>
+    <name>Convert to ECR</name>
+   </Item>
+  </related_id>
   <sort_order>128</sort_order>
   <source_id keyed_name="PR" type="ItemType" name="PR">881803D90C0B4F98A49A4732C16277F2</source_id>
  </Item>
