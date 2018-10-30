@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Action" id="93303F62EDDD49469EE07893D6536DD4" action="add">
+  <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+  <label xml:lang="en">Convert to NCR</label>
+  <location>client</location>
+  <method keyed_name="Convert PR to NCR" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>Convert PR to NCR</name>
+   </Item>
+  </method>
+  <target>none</target>
+  <type>item</type>
+  <name>Convert to NCR</name>
+ </Item>
+</AML>
