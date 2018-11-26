@@ -1,6 +1,6 @@
 # Change Management Actions
 
-This package contains convenience actions for PRs and ECRs. It provides menu choices to quickly convert a PR to an ECR or an ECR to an ECN. It also provides menu choices on Parts and Documents to add them to a new PR or ECR.
+This package contains convenience actions for PRs and ECRs. It provides menu choices to quickly convert a PR to an ECR or NCR and an ECR to an ECN. It also provides menu choices on Parts and Documents to add them to a new PR or ECR.
 
 ## History
 
@@ -34,6 +34,7 @@ Project | Aras
 1. Aras Innovator installed
 2. Aras Package Import tool
 3. **change-management-actions** import packages
+4. QMS application must be installed for PR to NCR functionality
 
 ### Install Steps
 

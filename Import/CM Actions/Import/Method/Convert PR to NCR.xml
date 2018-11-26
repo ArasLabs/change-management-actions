@@ -1,0 +1,27 @@
+﻿<AML>
+ <Item type="Method" id="D88EF267A2CD43A3B28B44EA3F803695" action="add">
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[var inn = this.newInnovator();
+var ncrItem = top.aras.newItem("qs_NCR", "add");
+var prId = this.getID();
+// Set the shared properties
+top.aras.setItemProperty(ncrItem, "item_number", this.getProperty("title", ""));
+top.aras.setItemProperty(ncrItem, "owned_by_id", this.getProperty("reported_by", ""));
+top.aras.setItemProperty(ncrItem, "description", this.getProperty("description", ""));
+// No relationship on NCR
+//var typeID = top.aras.getItemFromServerByName('RelationshipType', 'ECR PR', 'id').node.getAttribute('id');
+//var prRel = top.aras.newRelationship(typeID, ncrItem);
+//top.aras.setItemProperty(prRel, "related_id", this.node);
+
+// Add an Affected Item (if present)
+var affItemId = this.getProperty("affected_item", "");
+if (affItemId !==""){
+    var affPart = inn.getItemById("part",affItemId);
+    top.aras.setItemProperty(ncrItem, "affected_part", affItemId);
+}
+// Show the new NCR
+top.aras.uiShowItemEx(ncrItem, "tab view");]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>Convert PR to NCR</name>
+ </Item>
+</AML>

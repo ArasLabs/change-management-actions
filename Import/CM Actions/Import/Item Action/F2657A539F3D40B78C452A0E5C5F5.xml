@@ -1,0 +1,20 @@
+<AML>
+ <Item type="Item Action" id="F2657A539F3D40B78C68C452A0E5C5F5" action="add">
+  <related_id keyed_name="Convert to NCR" type="Action">
+   <Item type="Action" id="93303F62EDDD49469EE07893D6536DD4" action="add">
+    <item_query>___is_new___</item_query>
+    <location>client</location>
+    <method keyed_name="Convert PR to NCR" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>Convert PR to NCR</name>
+     </Item>
+    </method>
+    <target>none</target>
+    <type>item</type>
+    <name>Convert to NCR</name>
+   </Item>
+  </related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="PR" type="ItemType" name="PR">881803D90C0B4F98A49A4732C16277F2</source_id>
+ </Item>
+</AML>
